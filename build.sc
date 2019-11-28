@@ -35,7 +35,8 @@ object plugin extends ScalaModule with RundeckPlugin {
   def ivyDeps = Agg(
     ivy"org.freemarker:freemarker:2.3.19",
     ivy"org.scalaj::scalaj-http:2.4.2",
-    ivy"com.vdurmont:emoji-java:4.0.0"
+    ivy"com.vdurmont:emoji-java:4.0.0",
+    ivy"io.spray::spray-json:1.3.5"
   )
 
   def pluginClassNames = Seq("ajr.rundeck.telegram.TelegramNotificationPlugin")
