@@ -6,6 +6,8 @@ import java.util.ArrayList
 import org.apache.commons.httpclient.NameValuePair
 import java.net.URLEncoder
 import scalaj.http._
+import spray.json._
+import DefaultJsonProtocol._
 
 class TelegramMessenger(botAuthKey: String, val baseUrl: String = "https://api.telegram.org", http: BaseHttp = Http) {
 
