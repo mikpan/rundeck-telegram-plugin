@@ -11,12 +11,12 @@ class TelegramMessenger(botAuthKey: String, val baseUrl: String = "https://api.t
 
   def command(command: String, params: Map[String,String]) = {
     val url = s"$baseUrl/bot$botAuthKey/$command"
-    val request = http(url).params(params).asString
+    val request = http(url).postData(params.toJson.prettyPrint).header("content-type", "application/json").asString
     (request.code, request.body)
   }
 
-  def sendMessage(chat: Long, message: String) = {
-    command("sendMessage", Map("chat_id" -> chat.toString, "text" -> message))
+  def sendMessage(chat: Long, message: String, parse_mode: String = "Markdown") = {
+    command("sendMessage", Map("chat_id" -> chat.toString, "text" -> message, "parse_mode" -> parse_mode))
   }
   
   def sendDocument(chat: Long, fileBytes: Array[Byte], fileName: String, mimeType: String = "text/plain") = {
